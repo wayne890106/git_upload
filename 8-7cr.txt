@@ -1,12 +1,12 @@
 2
 create table MAIN 
-   (	NUM NUMBER, 
-	FACILITY VARCHAR2(20 BYTE) primary key, 
-	VILLAGE VARCHAR2(20 BYTE), 
+   (	NUM NUMBER primary key, 
+	FACILITY VARCHAR2(20 BYTE) foreign key, 
+	VILLAGE VARCHAR2(20 BYTE) foreign key, 
 	ADDRESS NVARCHAR2(100), 
 	PEOPLE NUMBER, 
 	BASE NUMBER, 
-	BRANCH VARCHAR2(20 BYTE)
+	BRANCH VARCHAR2(20 BYTE) foreign key
    )
 
  create table BRANCH
