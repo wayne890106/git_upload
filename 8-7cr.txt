@@ -1,0 +1,142 @@
+2
+create table MAIN 
+   (	NUM NUMBER, 
+	FACILITY VARCHAR2(20 BYTE) primary key, 
+	VILLAGE VARCHAR2(20 BYTE), 
+	ADDRESS NVARCHAR2(100), 
+	PEOPLE NUMBER, 
+	BASE NUMBER, 
+	BRANCH VARCHAR2(20 BYTE)
+   )
+
+ create table BRANCH
+   (	BR_NUM VARCHAR2(20 BYTE) primary key, 
+	BR_NM NVARCHAR2(20), 
+	BR_ADD NVARCHAR2(100), 
+	BR_TEL VARCHAR2(20 BYTE)
+   )
+
+ create table VILL 
+   (	VIL_NUM VARCHAR2(20 BYTE) primary key, 
+	VIL NVARCHAR2(20), 
+	TEL VARCHAR2(20 BYTE), 
+	OFFICE NVARCHAR2(100)
+   )
+
+ create table FACILITY
+   (	FAC_NUM VARCHAR2(20 BYTE) primary key, 
+	FAC NVARCHAR2(20)
+   )
+
+
+3
+insert into FACILITY (FAC_NUM, FAC) values ('A001', '公寓')
+insert into FACILITY (FAC_NUM, FAC) values ('A002', '大樓')
+insert into FACILITY (FAC_NUM, FAC) values ('A003', '公共設施')
+insert into FACILITY (FAC_NUM, FAC) values ('A004', '私營單位')
+
+
+
+insert into VILL (VIL_NUM, VIL, TEL, OFFICE) values ('C001', '大埔里', '037-581072', '竹南鎮公義路1035號')
+insert into VILL (VIL_NUM, VIL, TEL, OFFICE) values ('C002', '竹南里', '037-472735', '竹南鎮竹南里中山路 103 號')
+insert into VILL (VIL_NUM, VIL, TEL, OFFICE) values ('C003', '山佳里', '037-614186', '竹南鎮山佳里國光街 14 號')
+insert into VILL (VIL_NUM, VIL, TEL, OFFICE) values ('C004', '埔頂里', '037-724839', '後龍鎮埔頂里中興路136-1號')
+insert into VILL (VIL_NUM, VIL, TEL, OFFICE) values ('C005', '綠苗里', '037-333240', '苗栗市綠苗里中正路 766 號')
+insert into VILL (VIL_NUM, VIL, TEL, OFFICE) values ('C006', '民族里', '037-660001', '民族里民族路96號')
+insert into VILL (VIL_NUM, VIL, TEL, OFFICE) values ('C007', '忠孝里', '037-661145', '忠孝里光大街82號')
+insert into VILL (VIL_NUM, VIL, TEL, OFFICE) values ('C008', '信義里', '037-616072', '信義里信義路53巷1號')
+
+
+insert into BRANCH (BR_NUM, BR_NM, BR_ADD, BR_TEL) values ('M001', '竹南分局', '苗栗縣竹南鎮民族街72號', '03-7474796')
+insert into BRANCH (BR_NUM, BR_NM, BR_ADD, BR_TEL) values ('M002', '苗栗分局', '苗栗縣苗栗市金鳳街109號', '03-7320059')
+insert into BRANCH (BR_NUM, BR_NM, BR_ADD, BR_TEL) values ('M003', '頭份分局', '苗栗縣頭份市中興路503號', '03-7663004')
+
+
+
+insert into MAIN (NUM, FACILITY, VILLAGE, ADDRESS, PEOPLE, BASE, BRANCH) values ('1', 'A001', 'C001', '苗栗縣竹南鎮中埔街20號', '100', '1', 'M001')
+insert into MAIN (NUM, FACILITY, VILLAGE, ADDRESS, PEOPLE, BASE, BRANCH) values ('2', 'A002', 'C002', '苗栗縣竹南鎮和平街79號', '3142', '1', 'M001')
+insert into MAIN (NUM, FACILITY, VILLAGE, ADDRESS, PEOPLE, BASE, BRANCH) values ('3', 'A002', 'C003', '苗栗縣竹南鎮龍山路三段142號', '1072', '1', 'M001')
+insert into MAIN (NUM, FACILITY, VILLAGE, ADDRESS, PEOPLE, BASE, BRANCH) values ('4', 'A003', 'C004', '苗栗縣後龍鎮中華路1498號', '32', '1', 'M001')
+insert into MAIN (NUM, FACILITY, VILLAGE, ADDRESS, PEOPLE, BASE, BRANCH) values ('5', 'A001', 'C005', '苗栗縣苗栗市米市街80號', '106', '1', 'M002')
+insert into MAIN (NUM, FACILITY, VILLAGE, ADDRESS, PEOPLE, BASE, BRANCH) values ('6', 'A001', 'C005', '苗栗縣苗栗市光復路117號', '26', '1', 'M002')
+insert into MAIN (NUM, FACILITY, VILLAGE, ADDRESS, PEOPLE, BASE, BRANCH) values ('7', 'A002', 'C005', '苗栗縣苗栗市博愛街109號', '2038', '2', 'M002')
+insert into MAIN (NUM, FACILITY, VILLAGE, ADDRESS, PEOPLE, BASE, BRANCH) values ('8', 'A002', 'C005', '苗栗縣苗栗市大同路53號', '128', '2', 'M002')
+insert into MAIN (NUM, FACILITY, VILLAGE, ADDRESS, PEOPLE, BASE, BRANCH) values ('9', 'A003', 'C006', '苗栗縣頭份市民族里和平路102號', '353', '1', 'M003')
+insert into MAIN (NUM, FACILITY, VILLAGE, ADDRESS, PEOPLE, BASE, BRANCH) values ('10', 'A004', 'C007', '苗栗縣頭份市忠孝忠孝一路69號', '501', '1', 'M003')
+insert into MAIN (NUM, FACILITY, VILLAGE, ADDRESS, PEOPLE, BASE, BRANCH) values ('11', 'A001', 'C008', '苗栗縣頭份市信義里中正路65號', '194', '1', 'M003')
+insert into MAIN (NUM, FACILITY, VILLAGE, ADDRESS, PEOPLE, BASE, BRANCH) values ('12', 'A004', 'C008', '苗栗縣頭份市信義里中正路116號', '78', '1', 'M003')
+
+4-1
+select distinct
+    BR.BR_NM as 轄管分局,
+    BR.BR_TEL as 分局電話 
+ from 
+    STUDENT.MAIN MAIN     
+    left join STUDENT.BRANCH BR 
+        on MAIN.BRANCH  = BR.BR_NUM
+ where 
+    MAIN.PEOPLE > 1000;
+
+4-2
+select 
+    BR.BR_NM as 轄管分局 ,
+    BR.BR_TEL as 分局電話,
+    count(MAIN.NUM) over (partition by MAIN.BRANCH)as 設施大於1000容人數量的設施數量 
+ from
+    STUDENT.MAIN MAIN
+ left join STUDENT.BRANCH BR on MAIN.BRANCH = BR.BR_NUM
+ where
+    MAIN.PEOPLE > 1000
+4-3
+select 
+    BR.BR_NM as 轄管分局 ,
+    BR.BR_TEL as 分局電話,
+    count(MAIN.NUM) over (partition by MAIN.BRANCH)as 設施大於1000容人數量的設施數量,
+    MAIN.ADDRESS as 避難設施地址,
+    FAC.FAC 避難設施類型
+ from
+    STUDENT.MAIN MAIN
+ left join STUDENT.BRANCH BR on MAIN.BRANCH = BR.BR_NUM
+ left join STUDENT.FACILITY FAC on MAIN.FACILITY = FAC.FAC_NUM
+ where
+    MAIN.PEOPLE > 1000
+4-4
+select 
+    VV.VIL as 村里別,
+    MAIN.ADDRESS as 設施地址,
+    MAIN.PEOPLE as 容人數量,
+    BRAN.BR_NM as 轄管分局,
+    BRAN.BR_TEL as 分局電話
+ from
+    STUDENT.MAIN MAIN
+ left join STUDENT.VILL VV on MAIN.VILLAGE = VV.VIL_NUM
+ left join STUDENT.BRANCH BRAN on MAIN.BRANCH = BRAN.BR_NUM
+ where
+    MAIN.ADDRESS like '%中%'
+
+4-5
+select 
+    VV.VIL as 村里別,
+    VV.OFFICE as 辦公室位置,
+    MAIN.ADDRESS as 避難設施地址,
+    MAIN.PEOPLE as 容人數量 
+ from
+    STUDENT.MAIN MAIN
+ left join STUDENT.VILL VV on MAIN.VILLAGE = VV.VIL_NUM
+ where 
+    MAIN.FACILITY in ('A001','A002');
+
+
+5-1
+update 
+    STUDENT.MAIN2 MAIN2
+ set 
+    MIAN2.PEOPLE = 5000
+ where 
+    MAIN2.ADDRESS = '苗栗縣竹南鎮和平街79號';
+
+5-2
+delete from 
+    STUDENT.MAIN2 MAIN2
+ where 
+    MAIN2.PEOPLE < 1000;
