@@ -1,9 +1,12 @@
-package com.cathaybk.practice.nt50344.b;
+package com.cathaybk.practice.nt50344;
 
+/*
+ * 第3、4題
+ */
 public class Supervisor extends Employee {
 	public int payment;
 
-	public Supervisor(String name, String department, int payment) {// from here
+	public Supervisor(String name, String department, int payment) {
 		super(name, department);
 		this.payment = payment;
 	}

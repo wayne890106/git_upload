@@ -1,5 +1,8 @@
-package com.cathaybk.practice.nt50344.b;
+package com.cathaybk.practice.nt50344;
 
+/*
+ * 第3、4題
+ */
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileOutputStream;
@@ -29,12 +32,18 @@ public class HRMain {
 				BufferedWriter csvbw = new BufferedWriter(csvout)) {
 			StringBuilder sb = new StringBuilder();
 			for (Employee employee : employeeList2) {
-				String employee_nm = employee.getName();
-				int employee_pay = employee.getPayment();
-				sb.append(employee_nm).append(" , ").append(employee_pay).append("\n");
+				if (employee instanceof Sales) {
+					int employee_pay = ((Sales) employee).getPayment();
+					String employee_nm = ((Sales) employee).getName();
+					sb.append(employee_nm).append(" , ").append(employee_pay).append("\n");
+				} else if (employee instanceof Supervisor) {
+					int employee_pay2 = ((Supervisor) employee).getPayment();
+					String employee_nm2 = ((Supervisor) employee).getName();
+					sb.append(employee_nm2).append(" , ").append(employee_pay2).append("\n");
+				}
 
 			}
-			System.out.println(sb.toString());
+			System.out.println(sb.toString());// 測試是否成功
 			csvbw.write(sb.toString());
 		} catch (Exception e) {
 			e.printStackTrace();

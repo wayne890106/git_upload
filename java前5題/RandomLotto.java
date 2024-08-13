@@ -1,5 +1,9 @@
-package com.cathaybk.practice.nt50344.b;
+package com.cathaybk.practice.nt50344;
 
+
+/**
+ * 第二題--樂透排序
+ */
 import java.util.HashSet;
 import java.util.Random;
 import java.util.TreeSet;
@@ -15,7 +19,7 @@ public class RandomLotto {
 		}
 		System.out.print("排序前:");
 		for (Integer intt : lottolist) {
-			System.out.printf("%4d", intt);
+			System.out.printf("%2d ", intt);
 		}
 
 		TreeSet<Integer> lottolist2tree = new TreeSet<Integer>();
@@ -23,7 +27,7 @@ public class RandomLotto {
 		System.out.println();
 		System.out.print("排序後:");
 		for (Integer inttt : lottolist2tree) {
-			System.out.printf("%4d", inttt);
+			System.out.printf("%2d ", inttt);
 		}
 	}
 

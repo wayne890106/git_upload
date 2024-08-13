@@ -1,5 +1,8 @@
-package com.cathaybk.practice.nt50344.b;
+package com.cathaybk.practice.nt50344;
 
+/**
+ * java評量第一題--九九乘法表
+ */
 public class NineNineTable {
 
 	public static void main(String[] args) {
@@ -8,7 +11,7 @@ public class NineNineTable {
 				int res = i * j;
 				System.out.printf("%2d*%d=%2d", j, i, res);
 			}
-			System.out.println("\n");
+			System.out.println();
 		}
 	}
 

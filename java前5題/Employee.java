@@ -1,11 +1,12 @@
-package com.cathaybk.practice.nt50344.b;
+package com.cathaybk.practice.nt50344;
 
+/*
+ * 第3、4題
+ */
 public class Employee implements IWork {
 	public String name;
 	public String department;
-	public int payment;
-
-	// think of payment &salary
+	public int salary;
 
 	public Employee(String name, String department) {
 		this.name = name;
@@ -28,16 +29,15 @@ public class Employee implements IWork {
 		this.department = department;
 	}
 
-	public int getPayment() {
-		return payment;
+	public int getSalary() {
+		return salary;
 	}
 
-	public void setPayment(int payment) {
-		this.payment = payment;
+	public void setSalary(int salary) {
+		this.salary = salary;
 	}
 
 	public void printInfo() {
 
 	}
-
 }

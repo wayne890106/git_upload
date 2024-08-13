@@ -1,8 +1,11 @@
-package com.cathaybk.practice.nt50344.b;
+package com.cathaybk.practice.nt50344;
 
+/*
+ * 第3、4題
+ */
 public class Sales extends Employee {
-	public int bonus;// payment-bonus = salary
-	public int salary;
+	public int bonus;
+	public int payment;
 
 	public int getSalary() {
 		return salary;
@@ -12,7 +15,7 @@ public class Sales extends Employee {
 		this.salary = salary;
 	}
 
-	public Sales(String name, String department, int salary, int bonus) {// from here
+	public Sales(String name, String department, int salary, int bonus) {
 		super(name, department);
 		this.salary = salary;
 		this.bonus = bonus;
