@@ -1,9 +1,6 @@
 package com.cathaybk.practice.nt50344;
 
 import java.time.LocalDate;
-
-import java.util.Calendar;
-
 import java.util.Scanner;
 
 /**
@@ -13,7 +10,6 @@ public class Print_calendar {
 
 	public static void main(String[] args) {
 
-		Calendar cal = Calendar.getInstance();
 		Scanner sc = new Scanner(System.in);
 
 		System.out.print("請輸入介於1-12的整數m:");
@@ -50,5 +46,6 @@ public class Print_calendar {
 				}
 			}
 		}
+		sc.close();
 	}
 }
