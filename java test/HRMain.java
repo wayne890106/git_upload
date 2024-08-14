@@ -34,11 +34,11 @@ public class HRMain {
 			for (Employee employee : employeeList2) {
 				if (employee instanceof Sales) {
 					int employee_pay = ((Sales) employee).getPayment();
-					String employee_nm = ((Sales) employee).getName();
+					String employee_nm = employee.getName();
 					sb.append(employee_nm).append(" , ").append(employee_pay).append("\n");
 				} else if (employee instanceof Supervisor) {
 					int employee_pay2 = ((Supervisor) employee).getPayment();
-					String employee_nm2 = ((Supervisor) employee).getName();
+					String employee_nm2 = employee.getName();
 					sb.append(employee_nm2).append(" , ").append(employee_pay2).append("\n");
 				}
 

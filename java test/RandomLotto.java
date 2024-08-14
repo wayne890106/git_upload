@@ -1,13 +1,12 @@
 package com.cathaybk.practice.nt50344;
 
-
-/**
- * 第二題--樂透排序
- */
 import java.util.HashSet;
 import java.util.Random;
 import java.util.TreeSet;
 
+/**
+ * 第二題
+ */
 public class RandomLotto {
 
 	public static void main(String[] args) {
