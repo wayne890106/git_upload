@@ -23,29 +23,19 @@ public class Print_calendar {
 		System.out.println("---------------------------");
 		System.out.println("日   一   二  三   四   五  六 ");
 		System.out.println("===========================");
-		if (weekday == 7) {
-			for (int i = 1; i <= maxdayofmonth; i++) {
-				System.out.printf("%-4s", i);
-				if (i % 7 == 0) {
-					System.out.println();
-				}
-
-			}
-
-		} else {// 當月1號是星期一到星期六 ex:2----%6s
+		// 當月1號是星期一到星期六 ex:2----%6s
+		if (weekday != 7) {
 			System.out.printf("%" + 4 * weekday + "s", " ");
-			for (int k = 1; k <= 7 - weekday; k++) {
-				System.out.printf("%-4s", k);
-
-			}
-			System.out.println();
-			for (int j = 8 - weekday; j <= maxdayofmonth; j++) {
-				System.out.printf("%-4s", j);
-				if ((j + weekday) % 7 == 0) {
-					System.out.println();
-				}
+		}
+		for (int k = 1; k <= maxdayofmonth; k++) {
+			System.out.printf("%-4s", k);
+			if ((k + weekday) % 7 == 0) {
+				System.out.println();
 			}
 		}
+		System.out.println();
+
 		sc.close();
 	}
+
 }
