@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script type="text/javascript" src="HashMap.js"></script>
+    <script type="text/javaScript">
+    const map  = new HashMap();
+        window.onload = function(){ 
+            let firstInput = true;
+            document.getElementById('btn_put').onclick=function(){
+                let value1 = document.getElementById('text1').value; //取框框的值另為value1
+                let value2 = document.getElementById('text2').value;
+                var span1 = document.createElement('span');
+                result.appendChild(span1);
+                var span2 = document.createElement('span');
+                result.appendChild(span2);
+                if(map.contains(value1)||value1==null){
+                    confirm('輸入不可空或重複');
+                }
+                else{
+                    map.put(value1,value2);//放到map
+                    if (firstInput) {
+                     // 如果是第一次輸入，兩個文本顯示在同一行
+                        span1.innerText = value1+ '     : ';                          
+                        span2.innerText = value2;               
+                        firstInput = false;
+                    } else {
+                        // 如果是後續輸入，顯示在新的一行
+                        var p = document.createElement('p');
+                        p.innerText = value1 + " : " + value2;
+                        result.appendChild(p);
+                
+            }
+                }
+            }
+            document.getElementById('btn_clear').onclick = function(){
+            map.clear();
+            result.innerText = '';
+           
+            }
+            }
+            
+            
+
+
+        
+
+    </script>
+
+</head>
+
+<body>
+    <h3>KEY<input type="text" id="text1" style="position: absolute; left: 2cm ;top: 5mm;" value=""></h3>
+    <h3>VALUE <input type="text" id="text2" style="position: absolute; left: 2cm;top: 16mm;" value=""></h3>
+    <hr style="width: 10cm;position: absolute; left: auto;">
+    <button type="button" id="btn_put" style="position: absolute;top: 35mm;">put</button>
+    <button type="button" id="btn_clear" style="position: absolute; top:35mm; left: 15mm;">clear</button>
+    <hr style="width: 10cm;position: absolute; left: auto;top:45mm;">
+
+    <a style="position: absolute;top: 50mm;">【RESULT】</a>
+    <div id="result" style="position:absolute;top: 57mm;">
+        <b id="testt"></b>
+
+    </div>
+
+
+
+</body>
+
+</html>
