@@ -98,6 +98,10 @@
             document.getElementById('btn_clear').onclick = function () {
                 var table = document.getElementById('table1');
                 var rowsnumber = (table.rows.length);
+                document.getElementById('manufacturer').value ='';
+                document.getElementById('class').value ='';
+                document.getElementById('min_price').value ='';
+                document.getElementById('price').value ='';
                 while (rowsnumber != 0) {
                     table.deleteRow(1);
                     rowsnumber--;
