@@ -17,31 +17,31 @@
                 result.appendChild(span1);
                 var span2 = document.createElement('span');
                 result.appendChild(span2);
-                if(map.contains(value1)||value1==null){
+                if(map.contains(value1)||!value1.trim()){
                     confirm('輸入不可空或重複');
+                    return;
                 }
-                else{
-                    map.put(value1,value2);//放到map
-                    if (firstInput) {
-                     // 如果是第一次輸入，兩個文本顯示在同一行
-                        span1.innerText = value1+ '     : ';                          
-                        span2.innerText = value2;               
-                        firstInput = false;
-                    } else {
-                        // 如果是後續輸入，顯示在新的一行
-                        var p = document.createElement('p');
-                        p.innerText = value1 + " : " + value2;
-                        result.appendChild(p);
+                map.put(value1,value2);//放到map
+                if (firstInput) {
+                    // 如果是第一次輸入，兩個文本顯示在同一行
+                    span1.innerText = map.keys()[0]+ '     : ';                        
+                    span2.innerText = map.get(map.keys()[0]);              
+                    firstInput = false;
+                } else {
+                    // 如果是後續輸入，顯示在新的一行
+                    var p = document.createElement('p');
+                    p.innerText = map.keys()[map.keys().length-1] + " : " + map.get(map.keys()[map.keys().length-1]);
+                    result.appendChild(p);
+            
+                }
                 
-            }
-                }
             }
             document.getElementById('btn_clear').onclick = function(){
             map.clear();
             result.innerText = '';
            
             }
-            }
+        }
             
             
 

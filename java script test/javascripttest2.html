@@ -7,7 +7,6 @@
     <title>Document</title>
     <script>
         window.onload = function () {
-
             let k = 1;
             document.getElementById('btn_add').onclick = function () {
                 var table = document.getElementById('table1');//找到要加到的table那
@@ -18,71 +17,68 @@
                 let inputText4 = document.getElementById('price').value;
                 arr1.push(inputText1, inputText2, inputText3, inputText4);
                 var rowLength = table.rows.length;//取得表格row長度
-                if (inputText1 == '' || inputText2 == '') {
+                if (!inputText1.trim() || !inputText2.trim()) {
+                    alert('製造商和類別不可空白')
                     return;
                 }
-                else {
 
-                    var tr = document.createElement('tr');
-                    for (var i = 0; i < 7; i++) {
-                        var td = document.createElement('td');
-                        tr.appendChild(td);
-                        td.id = "tdid";
-                        table.appendChild(tr);
-                        if (i == 0) {
-                            var radio1 = document.createElement("input");
-                            radio1.type = "radio";
-                            radio1.name = 'radio11';//放同個name只能選一
-                            td.appendChild(radio1);
-                            radio1.onclick = function () {
-                                document.getElementById('manufacturer').value = arr1[0];
-                                document.getElementById('class').value = arr1[1];
-                                document.getElementById('min_price').value = arr1[2];
-                                document.getElementById('price').value = arr1[3];
-                            }
+                var tr = document.createElement('tr');
+                for (var i = 0; i < 7; i++) {
+                    var td = document.createElement('td');
+                    tr.appendChild(td);
+                    td.id = "tdid";
+                    table.appendChild(tr);
+                    if (i == 0) {
+                        var radio1 = document.createElement("input");
+                        radio1.type = "radio";
+                        radio1.name = 'radio11';//放同個name只能選一
+                        td.appendChild(radio1);
+                        radio1.onclick = function () {
+                            document.getElementById('manufacturer').value = arr1[0];
+                            document.getElementById('class').value = arr1[1];
+                            document.getElementById('min_price').value = arr1[2];
+                            document.getElementById('price').value = arr1[3];
                         }
-                        else if (i == 1) {
-                            td.innerHTML = k;
-                            k++;
-                        }
-                        else if (i > 1 && i < 6) {
-                            td.innerHTML = arr1[i - 2];
-                        }
-                        else {
-                            var button1 = document.createElement("input");
-                            button1.type = "button";
-                            button1.value = '刪除';
-                            button1.setAttribute('id', 'btn_delete');
-                            td.appendChild(button1);
-                            button1.onclick = function () {
-                                button2 = document.getElementById('btn_delete');
-                                var rowIndex = button2.parentNode.parentNode.rowIndex;//得此tr在table中第幾row
-                                table.deleteRow(rowIndex);
-                                k--;
-                                var rowsnumber = table.rows.length;//找現在有幾行
-                                for (var j = 1; j < rowsnumber; j++) {
-                                    table.rows[j].cells[1].innerHTML = j;//第j行的第二格以j復職
-                                }
+                    }
+                    else if (i == 1) {
+                        td.innerHTML = k;
+                        k++;
+                    }
+                    else if (i > 1 && i < 6) {
+                        td.innerHTML = arr1[i - 2];
+                    }
+                    else {
+                        var button1 = document.createElement("input");
+                        button1.type = "button";
+                        button1.value = '刪除';
+                        button1.setAttribute('id', 'btn_delete');
+                        td.appendChild(button1);
+                        button1.onclick = function () {
+                            button2 = document.getElementById('btn_delete');
+                            var rowIndex = button2.parentNode.parentNode.rowIndex;//得此tr在table中第幾row
+                            table.deleteRow(rowIndex);
+                            k--;
+                            var rowsnumber = table.rows.length;//找現在有幾行
+                            for (var j = 1; j < rowsnumber; j++) {
+                                table.rows[j].cells[1].innerHTML = j;//第j行的第二格以j復職
                             }
                         }
                     }
                 }
+
             }
             document.getElementById('btn_modify').onclick = function () {
                 var table = document.getElementById('table1');
                 var manufacturer1 = document.getElementById('manufacturer').value;
                 var class1 = document.getElementById('class').value;
-                var radioarr = document.getElementsByName('radio11');//拿所有的radio
-                console.log('有幾個radio:' + radioarr.length);
+                var radioarr = document.getElementsByName('radio11');//拿所有的radio 
                 var rowsnumber = table.rows.length;
-                console.log('加標頭共幾行:' + rowsnumber);
                 for (let i = 0; i < rowsnumber - 1; i++) {//看總共幾行，取得radio的array，要扣掉標頭
                     var radiosingle = radioarr[i];
                     if (radiosingle.checked) {
-                        console.log('有東西被勾');
                         var which = i;//找到是哪一行
-                        if (manufacturer1 == '' || class1 == '') {
-                            console.log('友直為0');
+                        if (!manufacturer1.trim() || !class1.trim()) {
+                            alert('製造商和類別不可空白');
                             return;
                         }
                         var manufacturer1 = document.getElementById('manufacturer').value;
@@ -96,15 +92,11 @@
                         rows.cells[4].innerHTML = min_price1;
                         rows.cells[5].innerHTML = price1;
                     }
-                    else {
-                        continue;
-                    }
                 }
 
             }
             document.getElementById('btn_clear').onclick = function () {
                 var table = document.getElementById('table1');
-                console.log('xd');
                 var rowsnumber = (table.rows.length);
                 while (rowsnumber != 0) {
                     table.deleteRow(1);
@@ -117,7 +109,7 @@
 </head>
 
 <body>
-    <table border="1" >
+    <table border="1">
         <tr align="center">
             <td style="width: 2cm;height: 1cm;">製造商</td>
             <td style="width: 5cm;height: 1cm;"><input type="text" id="manufacturer"></td>
