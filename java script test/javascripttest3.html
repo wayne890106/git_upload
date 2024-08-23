@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>心理測驗看「減肥會成功or失敗」</title>
+    <style>
+        table,
+        th,
+        td {
+            border: 1px solid #333;
+        }
+    </style>
+    <script type="text/javascript" src="psychometricTestObject.js"></script>
+    <script>
+
+        window.onload = function () {
+            currentquestion = 'Q1'; // 題號第一題
+            func_printquestion(); // 顯示第一題
+
+            // 初始化第一題按鈕事件===============
+            document.getElementsByClassName('button3')[(document.getElementsByClassName('button3').length) - 1].addEventListener('click', function () {
+                console.log('first');//test
+                func_findchoice(); // 找到當前選中的選項並更新 currentquestion
+                func_printquestion(); // 顯示下一題
+                setupButtonClick(); // 設置下一題按鈕的點擊事件======================
+
+            });
+        }
+
+        // 動態生成問題及選項
+        var func_printquestion = function () {//button,class:button3...radio的name設定動態以防找到上一題的radio
+            if (['A', 'B', 'C', 'D'].includes(currentquestion)) {
+                var header1 = document.getElementById('h2');
+                var header = document.getElementById('h1');
+                header.textContent = result[currentquestion]['title'];
+                header1.textContent = result[currentquestion]['content'];
+                return;
+            }
+            var table = document.getElementById('content');
+            var tr = document.createElement('tr');
+            table.appendChild(tr);
+
+            for (i = 0; i < 4; i++) {
+                var td = document.createElement('td');
+                tr.appendChild(td);
+
+                if (i == 0) {
+                    td.innerHTML = currentquestion;
+                } else if (i == 1) {
+                    td.innerHTML = psychometricTest[currentquestion]['question'];
+                } else if (i == 2) {
+                    var choice_num = psychometricTest[currentquestion]['ans'].length;
+
+                    for (j = 0; j < choice_num; j++) {
+                        var radioxd = document.createElement('input');
+                        radioxd.type = "radio";
+                        radioxd.name = "choice" + currentquestion; // 使用動態名稱防止重複選項干擾==========
+                        radioxd.value = psychometricTest[currentquestion]['ans'][j];
+
+                        var label = document.createElement('label');
+                        label.textContent = psychometricTest[currentquestion]['ans'][j];
+
+                        td.appendChild(radioxd);
+                        td.appendChild(label);
+                        td.appendChild(document.createElement('br'));
+                    }
+                } else {
+                    var button3 = document.createElement('input');
+                    button3.type = "button";
+                    button3.value = "下一題";
+                    button3.setAttribute('class', 'button3');//====================
+                    td.appendChild(button3);
+
+                }
+            }
+        }
+
+        // 查找選中的選項並更新題號
+        var func_findchoice = function () {
+            var queschoicearr = document.getElementsByName('choice' + currentquestion); // 根據當前題號選擇相應的選項
+            
+            for (k = 0; k < queschoicearr.length; k++) {
+                var radiosingle1 = queschoicearr[k];
+
+                if (radiosingle1.checked) {
+                    choose1 = k;
+                    currentquestion = psychometricTest[currentquestion]['next'][choose1]; // 更新下一題題號
+                }
+            }
+
+
+        }
+
+        // 設置按鈕點擊事件
+        var setupButtonClick = function () {
+            document.getElementsByClassName('button3')[(document.getElementsByClassName('button3').length) - 2].disabled = true;//點下一題就disable
+            var buttons = document.getElementsByClassName('button3');//找到很多個button
+            var lastButton = buttons[buttons.length - 1];//找最新的button
+
+            lastButton.addEventListener('click', function () {//第二個以後
+                console.log('second');//test
+                func_findchoice();
+                func_printquestion();
+                setupButtonClick();//第二個後執行完又跳回95行
+            });
+        }
+    </script>
+</head>
+
+<body>
+    <h1>心理測驗看「減肥會成功or失敗」</h1>
+    <p>減重方式五花八門，你確定自己適合哪種減重方式嗎？</p>
+    <p>做個心理測驗試試看吧？</p>
+    <p>心理測驗來源： <a href="https://www.facebook.com/RDJIAHUEI/?locale=zh_TW">李佳蕙營養師</a></p>
+    <br>
+    <hr>
+
+
+    <table id="content">
+        <tr style="text-align: center;">
+            <td>題號</td>
+            <td style="width: 15cm;">題目</td>
+            <td style="width: 5cm;">選項</td>
+            <td style="width: 2cm;"></td>
+        </tr>
+
+    </table>
+    <br>
+    <div id="resultDiv">
+        <h1 id='h1'></h1>
+        <br>
+        <p id='h2'></p>
+    </div>
+
+</body>
+
+</html>
